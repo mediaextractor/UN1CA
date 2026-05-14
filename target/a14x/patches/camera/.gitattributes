@@ -1,0 +1,6 @@
+vendor/* binary
+vendor/etc/* binary
+vendor/etc/VslMesDetector/* binary
+vendor/** binary
+vendor/etc/** binary
+vendor/etc/VslMesDetector/** binary

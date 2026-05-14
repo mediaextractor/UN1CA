@@ -1,0 +1,7 @@
+/vendor u:object_r:vendor_file:s0
+/vendor/etc u:object_r:vendor_configs_file:s0
+/vendor/etc/VslMesDetector u:object_r:vendor_configs_file:s0
+/vendor/etc/VslMesDetector/MesDetectorBlur\.tflite u:object_r:vendor_configs_file:s0
+/vendor/etc/VslMesDetector/MesDetectorLowlight\.tflite u:object_r:vendor_configs_file:s0
+/vendor/etc/VslMesDetector/MesDetectorNoise\.tflite u:object_r:vendor_configs_file:s0
+/vendor/etc/VslMesDetector/moire_detection\.tflite u:object_r:vendor_configs_file:s0
