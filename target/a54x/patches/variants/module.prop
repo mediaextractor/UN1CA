@@ -1,0 +1,4 @@
+id=variants
+name=Support for other variants
+author=salvogiangri, Majaahh, mediaserver64
+description=Adds required blobs to make one vendor for other a54x variants.

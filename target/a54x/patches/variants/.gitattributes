@@ -1,0 +1,6 @@
+vendor/* binary
+vendor/firmware/* binary
+vendor/tee*/* binary
+vendor/** binary
+vendor/firmware/** binary
+vendor/tee*/** binary

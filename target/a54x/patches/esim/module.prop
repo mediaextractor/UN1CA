@@ -1,0 +1,4 @@
+id=esim
+name=eSIM Patch
+author=salvogiangri
+description=Disables eSIM settings on unsupported variants.

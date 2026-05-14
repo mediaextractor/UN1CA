@@ -1,0 +1,2 @@
+# Silence HeatmapThread logs
+persist.log.tag.HeatmapThread=S

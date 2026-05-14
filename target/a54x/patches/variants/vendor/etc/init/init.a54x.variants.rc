@@ -1,0 +1,28 @@
+# SM-A5460 - a54xzc (chn_open)
+on early-init && property:ro.boot.em.model=SM-A5460
+	# TEEgris - Firmware
+    mount none /vendor/tee_SM-A5460 /vendor/tee bind
+
+# SM-A546B - a54xnaxx (eur_open)
+on early-init && property:ro.boot.em.model=SM-A546B
+	# TEEgris - Firmware
+    mount none /vendor/tee_SM-A546B /vendor/tee bind
+
+# SM-A546E - a54xnsxx (sea_open)
+on early-init && property:ro.boot.em.model=SM-A546E
+	# TEEgris - Firmware
+    mount none /vendor/tee_SM-A546E /vendor/tee bind
+
+# SM-A546S - a54xskt (kor_open)
+on early-init && property:ro.boot.em.model=SM-A546S
+	# TEEgris - Firmware
+    mount none /vendor/tee_SM-A546S /vendor/tee bind
+
+on early-init
+	# Firmware blobs
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/AIE.bin /vendor/firmware/AIE.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/calliope_sram.bin /vendor/firmware/calliope_sram.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/mfc_fw.bin /vendor/firmware/mfc_fw.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/os.checked.bin /vendor/firmware/os.checked.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/pablo_icpufw.bin /vendor/firmware/pablo_icpufw.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/vts.bin /vendor/firmware/vts.bin bind
