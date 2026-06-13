@@ -1,0 +1,38 @@
+# Firmware
+on early-init
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/AIE.bin /vendor/firmware/AIE.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/calliope_sram.bin /vendor/firmware/calliope_sram.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/mfc_fw.bin /vendor/firmware/mfc_fw.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/os.checked.bin /vendor/firmware/os.checked.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/pablo_icpufw.bin /vendor/firmware/pablo_icpufw.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/vts.bin /vendor/firmware/vts.bin bind
+
+# SM-A5460 - a54xzh (chn_hk) / a54xzc (chn_open)
+on early-init && property:ro.boot.em.model=SM-A5460
+	# eSIM
+	mount none /dev/null /system/priv-app/EsimKeyString/EsimKeyString.apk bind
+    mount none /dev/null /system/priv-app/EuiccService/EuiccService.apk bind
+	mount none /dev/null /system/etc/permissions/privapp-permissions-com.samsung.android.app.esimkeystring.xml bind
+	mount none /dev/null /system/etc/permissions/privapp-permissions-com.samsung.euicc.xml bind
+	mount none /dev/null /system/etc/sysconfig/preinstalled-packages-com.samsung.android.app.esimkeystring.xml bind
+	mount none /dev/null /system/etc/sysconfig/preinstalled-packages-com.samsung.euicc.xml bind
+# a54xzh (chn_hk)
+on early-init && property:ro.boot.bootloader=A5460ZHSFDYI1
+	# TEEgris - Firmware
+    mount none /vendor/firmware/variants/SM-A5460/tee_a54xzh /vendor/tee bind
+# a54xzc (chn_open)
+on early-init && property:ro.boot.bootloader=A5460ZCSFDYH1
+	# TEEgris - Firmware
+    mount none /vendor/firmware/variants/SM-A5460/tee_a54xzc /vendor/tee bind
+
+# SM-A546E - a54xnsxx (sea_open)
+on early-init && property:ro.boot.em.model=SM-A546E
+	# TEEgris - Firmware
+    mount none /vendor/firmware/variants/SM-A546E/tee /vendor/tee bind
+	# eSIM
+	mount none /dev/null /system/priv-app/EsimKeyString/EsimKeyString.apk bind
+    mount none /dev/null /system/priv-app/EuiccService/EuiccService.apk bind
+	mount none /dev/null /system/etc/permissions/privapp-permissions-com.samsung.android.app.esimkeystring.xml bind
+	mount none /dev/null /system/etc/permissions/privapp-permissions-com.samsung.euicc.xml bind
+	mount none /dev/null /system/etc/sysconfig/preinstalled-packages-com.samsung.android.app.esimkeystring.xml bind
+	mount none /dev/null /system/etc/sysconfig/preinstalled-packages-com.samsung.euicc.xml bind

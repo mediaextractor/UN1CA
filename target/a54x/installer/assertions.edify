@@ -1,0 +1,4 @@
+is_substring("A5460ZC", getprop("ro.boot.bootloader")) && abort("E3003: This package currently doesn't support CHC firmware.");
+is_substring("A5460ZH", getprop("ro.boot.bootloader")) && verify_no_downgrade(getprop("ro.boot.bootloader"), "A5460ZHSFDYI1") && abort("E3003: This package requires latest Android 15 firmware.");
+is_substring("A546BXX", getprop("ro.boot.bootloader")) && verify_no_downgrade(getprop("ro.boot.bootloader"), "A546BXXSFDYI1") && abort("E3003: This package requires latest Android 15 firmware.");
+is_substring("A546EXX", getprop("ro.boot.bootloader")) && verify_no_downgrade(getprop("ro.boot.bootloader"), "A546EXXSFDYI1") && abort("E3003: This package requires latest Android 15 firmware.");
