@@ -27,7 +27,39 @@ if [ -f "$FW_DIR/$TARGET_FIRMWARE_PATH/system/system/etc/libnfc-nci-STM_ST21.con
     ADD_TO_WORK_DIR "$TARGET_FIRMWARE" "system" "system/etc/libnfc-nci-STM_ST21.conf" 0 0 644 "u:object_r:system_file:s0"
 fi
 
-if [ "$(GET_PROP "vendor" "ro.vendor.nfc.feature.chipname")" ]; then
+if [ ! "$(GET_PROP "vendor" "ro.vendor.nfc.feature.chipname")" ]; then
+    DELETE_FROM_WORK_DIR "system" "system/app/NfcRROverlayDefault"
+    DELETE_FROM_WORK_DIR "system" "system/framework/com.samsung.android.nfc.adapter.jar"
+    DELETE_FROM_WORK_DIR "system" "system/etc/init/init.nfc.samsung.rc"
+    DELETE_FROM_WORK_DIR "system" "system/etc/nfc_key"
+    DELETE_FROM_WORK_DIR "system" "system/etc/nfc_rule_configs.xml"
+    DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.samsung.android.nfc.adapter.xml"
+    DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.sec.feature.cover.nfcledcover.xml"
+    DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.sec.feature.nfc_authentication.xml"
+    DELETE_FROM_WORK_DIR "system" "system/etc/permissions/com.sec.feature.nfc_authentication_cover.xml"
+    DELETE_FROM_WORK_DIR "system" "system/etc/permissions/NfcNci.xml"
+    DELETE_FROM_WORK_DIR "system" "system/etc/permissions/SecNfc.xml"
+    DELETE_FROM_WORK_DIR "system" "system/etc/sysconfig/preinstalled-packages-com.samsung.android.nfc.xml"
+	if [ -f "$WORK_DIR/system/system/lib/libnfc_nci_jni.so" ] && [ -f "$WORK_DIR/system/system/lib64/libnfc_nci_jni.so" ]; then
+		DELETE_FROM_WORK_DIR "system" "system/lib/libnfc_nci_jni.so"
+		DELETE_FROM_WORK_DIR "system" "system/lib/libnfc_prop_extn.so"
+		DELETE_FROM_WORK_DIR "system" "system/lib/libnfc_vendor_extn.so"
+		DELETE_FROM_WORK_DIR "system" "system/lib64/libnfc_nci_jni.so"
+		DELETE_FROM_WORK_DIR "system" "system/lib64/libnfc_prop_extn.so"
+		DELETE_FROM_WORK_DIR "system" "system/lib64/libnfc_vendor_extn.so"
+	elif [ -f "$WORK_DIR/system/system/lib/libstnfc_nci_jni.so" ] && [ -f "$WORK_DIR/system/system/lib64/libstnfc_nci_jni.so" ]; then
+		DELETE_FROM_WORK_DIR "system" "system/lib/libnfc_vendor_extn_st.so"
+        DELETE_FROM_WORK_DIR "system" "system/lib/libstnfc_nci_jni.so"
+		DELETE_FROM_WORK_DIR "system" "system/lib64/libnfc_vendor_extn_st.so"
+        DELETE_FROM_WORK_DIR "system" "system/lib64/libstnfc_nci_jni.so"
+	elif [ -f "$WORK_DIR/system/system/lib/libnfc_sec_jni.so" ] && [ -f "$WORK_DIR/system/system/lib64/libnfc_sec_jni.so" ]; then
+        DELETE_FROM_WORK_DIR "system" "system/lib/libnfc_sec_jni.so"
+        DELETE_FROM_WORK_DIR "system" "system/lib64/libnfc_sec_jni.so"
+	fi
+    DELETE_FROM_WORK_DIR "system" "system/priv-app/NfcNci"
+    DELETE_FROM_WORK_DIR "system" "system/priv-app/SecNfc"
+	return 0
+elif [ "$(GET_PROP "vendor" "ro.vendor.nfc.feature.chipname")" ]; then
     if [[ "$(GET_PROP "vendor" "ro.vendor.nfc.feature.chipname")" == "NXP_PN553" ]]; then
         SET_PROP "vendor" "ro.vendor.nfc.feature.chipname" "NXP_SN100U"
     fi
