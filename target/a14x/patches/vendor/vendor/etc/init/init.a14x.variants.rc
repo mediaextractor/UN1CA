@@ -1,0 +1,11 @@
+# SM-A146B - a14xxx
+on early-init && property:ro.boot.em.model=SM-A146B
+    # TEEgris - Firmware
+    mount none /vendor/firmware/variants/SM-A146B/tee /vendor/tee bind
+
+# Firmware blobs
+on early-init
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/calliope_sram.bin /vendor/firmware/calliope_sram.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/mfc_fw.bin /vendor/firmware/mfc_fw.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/os.checked.bin /vendor/firmware/os.checked.bin bind
+    mount none /vendor/firmware/variants/${ro.boot.em.model}/pablo_icpufw.bin /vendor/firmware/pablo_icpufw.bin bind

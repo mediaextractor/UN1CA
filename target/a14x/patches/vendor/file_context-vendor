@@ -1,0 +1,12 @@
+/vendor u:object_r:vendor_file:s0
+/vendor/bin u:object_r:vendor_file:s0
+/vendor/bin/hw u:object_r:vendor_file:s0
+/vendor/bin/hw/wpa_supplicant u:object_r:hal_wifi_supplicant_default_exec:s0
+/vendor/bin/secril_config_svc u:object_r:vendor_secril_config_svc_exec:s0
+/vendor/etc/init/init\.a14x\.variants\.rc u:object_r:vendor_configs_file:s0
+/vendor/firmware/variants u:object_r:vendor_fw_file:s0
+/vendor/firmware/variants/SM-A146B u:object_r:vendor_fw_file:s0
+/vendor/firmware/variants/SM-A146B/calliope_sram\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/variants/SM-A146B/mfc_fw\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/variants/SM-A146B/os\.checked\.bin u:object_r:vendor_fw_file:s0
+/vendor/firmware/variants/SM-A146B/pablo_icpufw\.bin u:object_r:vendor_fw_file:

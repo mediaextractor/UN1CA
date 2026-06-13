@@ -1,0 +1,2 @@
+is_substring("A146BXX", getprop("ro.boot.bootloader")) && verify_no_downgrade(getprop("ro.boot.bootloader"), "A146BXXSDDZE1") && abort("E3003: This package requires latest Android 15 firmware.");
+is_substring("A146MUB", getprop("ro.boot.bootloader")) && verify_no_downgrade(getprop("ro.boot.bootloader"), "A146MUBSDDZE1") && abort("E3003: This package requires latest Android 15 firmware.");
