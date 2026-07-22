@@ -25,10 +25,13 @@ on early-init && property:ro.boot.bootloader=A5460ZCSFDYH1
 	# TEEgris - Firmware
     mount none /vendor/firmware/variants/SM-A5460/tee_a54xzc /vendor/tee bind
 
+# SM-A546B - a54xnaxx (eur_open)
+on early-init && property:ro.boot.em.model=SM-A546B
+	# TEEgris - Firmware
+    mount none /vendor/firmware/variants/SM-A546B/tee /vendor/tee bind
+
 # SM-A546E - a54xnsxx (sea_open)
 on early-init && property:ro.boot.em.model=SM-A546E
-	# TEEgris - Firmware
-    mount none /vendor/firmware/variants/SM-A546E/tee /vendor/tee bind
 	# eSIM
 	mount none /dev/null /system/priv-app/EsimKeyString/EsimKeyString.apk bind
     mount none /dev/null /system/priv-app/EuiccService/EuiccService.apk bind

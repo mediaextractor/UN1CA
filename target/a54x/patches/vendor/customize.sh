@@ -1,31 +1,19 @@
-# eSE
-EVAL "sed -i \"/class hal/a \    disabled\" \
-	\"$WORK_DIR/vendor/etc/init/android.hardware.secure_element@1.2-service.rc\""
-{
-	echo ""
-	echo "on property:ro.boot.em.model=SM-A546B"
-	echo "start vendor.secure_element_hal_service"
-	echo ""
-	echo "on property:ro.boot.em.model=SM-A5460"
-	echo "start vendor.secure_element_hal_service"
-} >> "$WORK_DIR/vendor/etc/init/android.hardware.secure_element@1.2-service.rc" || return 1
-
 # TEEgris - Firmware
-EVAL "mkdir -p \"$WORK_DIR/vendor/firmware/variants/SM-A546B\""
-SET_METADATA "vendor" "firmware/variants/SM-A546B" 0 2000 755 "u:object_r:vendor_fw_file:s0"
+EVAL "mkdir -p \"$WORK_DIR/vendor/firmware/variants/SM-A546E\""
+SET_METADATA "vendor" "firmware/variants/SM-A546E" 0 2000 755 "u:object_r:vendor_fw_file:s0"
 for f in "AIE.bin" "calliope_sram.bin" \
         "mfc_fw.bin" "os.checked.bin" "pablo_icpufw.bin" "vts.bin"; do
-    LOG "- Moving /vendor/firmware/$f to /vendor/firmware/variants/SM-A546B/$f"
-    EVAL "mv \"$WORK_DIR/vendor/firmware/$f\" \"$WORK_DIR/vendor/firmware/variants/SM-A546B/$f\""
-    SET_METADATA "vendor" "firmware/variants/SM-A546B/$f" 0 0 644 "u:object_r:vendor_fw_file:s0"
+    LOG "- Moving /vendor/firmware/$f to /vendor/firmware/variants/SM-A546E/$f"
+    EVAL "mv \"$WORK_DIR/vendor/firmware/$f\" \"$WORK_DIR/vendor/firmware/variants/SM-A546E/$f\""
+    SET_METADATA "vendor" "firmware/variants/SM-A546E/$f" 0 0 644 "u:object_r:vendor_fw_file:s0"
 
     LOG "- Creating dummy /vendor/firmware/$f"
     EVAL "touch \"$WORK_DIR/vendor/firmware/$f\""
 done
 
 TEEGRIS_ZIPS=(
-	# a54xnsxx (sea_open)
-	"A546EXXSFDYI1_EGY_OJM/A546EXXSFDYI1_firmware_tee.zip"
+	# a54xnaxx (eur_open)
+	"A546BXXSFDYI1_EUX_OXM/A546BXXSFDYI1_firmware_tee.zip"
     # a54xzh (chn_hk)
     "A5460ZHSFDYI1_TGY_OZS/A5460ZHSFDYI1_firmware_tee.zip"
 	# a54xzc (chn_open)
@@ -51,13 +39,13 @@ for f in "${TEEGRIS_ZIPS[@]}"; do
     EVAL "unzip \"$TMP_DIR/$FILE_NAME\" -d \"$TEE_DIR\""
 	EVAL "rm -rf \"$TEE_DIR/firmware\""
 	if [ "SM-$(cut -c1-7 <<< "$FILE_NAME")" == "SM-A5460ZC" ]; then
-		TEE_DIR="$WORK_DIR/vendor/firmware/variants/SM-A5460"
-		EVAL "mv \"$TEE_DIR/tee\" \"$TEE_DIR/tee_a54xzc\""
+		EVAL "mv \"$WORK_DIR/vendor/firmware/variants/SM-A5460/tee\" \
+			\"$WORK_DIR/vendor/firmware/variants/SM-A5460/tee_a54xzc\""
 		SET_METADATA "vendor" "firmware/variants/SM-A5460/tee_a54xzc" 0 2000 755 "u:object_r:tee_file:s0"
 		TEE="tee_a54xzc"
 	elif [ "SM-$(cut -c1-7 <<< "$FILE_NAME")" == "SM-A5460ZH" ]; then
-		TEE_DIR="$WORK_DIR/vendor/firmware/variants/SM-A5460"
-		EVAL "mv \"$TEE_DIR/tee\" \"$TEE_DIR/tee_a54xzh\""
+		EVAL "mv \"$WORK_DIR/vendor/firmware/variants/SM-A5460/tee\" \
+			\"$WORK_DIR/vendor/firmware/variants/SM-A5460/tee_a54xzh\""
 		SET_METADATA "vendor" "firmware/variants/SM-A5460/tee_a54xzh" 0 2000 755 "u:object_r:tee_file:s0"
 		TEE="tee_a54xzh"
 	fi
@@ -77,7 +65,7 @@ for f in "${TEEGRIS_ZIPS[@]}"; do
 
     EVAL "rm -f \"$TMP_DIR/$FILE_NAME\""
 
-    unset FILE_NAME TEE_DIR
+    unset FILE_NAME TEE_DIR TEE
 done
 
 {
